@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
 import { fetchPosts, deletePost, updatePost } from "./api";
 import { PostDetail } from "./PostDetail";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const MaxPostPage = 10;
 
 export function Posts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPost, setSelectedPost] = useState(null);
+
+  const updateMutation = useMutation({
+    mutationFn: (postId) => updatePost(postId),
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (postId) => deletePost(postId),
+  });
 
   /* 
   ** '다음 페이지' 클릭 시 Loading... 을 보여주지 않고 데이터 보여주는 방법
@@ -44,7 +52,15 @@ export function Posts() {
     <>
       <ul>
         {data.map((post) => (
-          <li key={post.id} className="post-title" onClick={() => setSelectedPost(post)}>
+          <li
+            key={post.id}
+            className="post-title"
+            onClick={() => {
+              updateMutation.reset();
+              deleteMutation.reset();
+              setSelectedPost(post);
+            }}
+          >
             {post.title}
           </li>
         ))}
@@ -64,7 +80,7 @@ export function Posts() {
         </button>
       </div>
       <hr />
-      {selectedPost && <PostDetail post={selectedPost} />}
+      {selectedPost && <PostDetail post={selectedPost} deleteMutation={deleteMutation} updateMutation={updateMutation} />}
     </>
   );
 }

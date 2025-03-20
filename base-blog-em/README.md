@@ -30,6 +30,8 @@ Currently, two official plugins are available:
 
 #### isFetching과 isLoading의 차이
 
+가장 큰 차이점은 캐시된 데이터의 유무
+
 - isFetching
   - 비동기 쿼리가 아직 해결되지 않았음을 의미
   - 즉, fetch가 완료되지 않았지만, Axios 호출과 같은 다른 종류의 데이터를 가져오는 작업일 경우가 있다.
