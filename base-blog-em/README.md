@@ -13,6 +13,12 @@ Currently, two official plugins are available:
 
 쿼리 관리 + 서버 데이터를 저장하는 클라이언트
 
+### prefetchQuery
+
+- 쿼리 클라이언트의 메소드
+- useQueryClient 훅을 사용해서 쿼리 클라이언트를 가져올 수 있다.
+- 데이터 prefetching 처리하여 캐시된 데이터를 화면에 보여준다.
+
 ### QueryProvider
 
 자식 컴포넌트에 캐시 및 클라이언트 구성을 제공할 프로바이더

@@ -1,9 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
 import { fetchComments } from "./api";
 import "./PostDetail.css";
 
 export function PostDetail({ post }) {
   // replace with useQuery
-  const data = [];
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["postdetail", post.id],
+    queryFn: () => fetchComments(post.id),
+    staleTime: 2000,
+  });
+
+  if (isLoading) return <h3>post detail loading..</h3>;
+  if (isError) return <h3>post detail error!!</h3>;
 
   return (
     <>
