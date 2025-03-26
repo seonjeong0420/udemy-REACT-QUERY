@@ -35,3 +35,24 @@ Currently, two official plugins are available:
 - 익명 함수에서 안정적인 함수를 만들고 싶다면, useCallback 함수(함수를 기억하는 훅)를 사용할 수 있다.
 
 ## Refetching
+
+## JWT Authentication
+
+Json Web Token 인증
+
+- 사용자 이름과 비밀번호를 서버로 전송하고 이 사용자 이름과 비밀번호가 데이터베이스에 있는 정보와 일치하면 서버가 토큰을 반환하는 방식으로 동작
+- 클라이언트가 로그인을 요구하는 서버의 자원을 요청할 때마다 요청과 함께 헤더에 토큰을 보내어 서버에서 이 클라이언트가 인증된 것임을 알 수 있게 한다.
+
+## 인증과 사용자 상태 관리를 돕는 3가지 훅
+
+- useLoginData : 인증 컨텍스트 값 반환
+  - userId, userToken, clearLoginData, setLoginData
+- useAuthAcitons : 인증 방법을 유지 관리
+  - signin, signout, singup
+- useUser : 서버에서 사용자 데이터를 반환
+  - user, updateUserData, clearUserData
+
+### query cache와 auth context에 사용자의 id를 모두 저장하는 이유?
+
+1. 쿼리 캐시에 로그인한 사용자를 저장하는 것은 혼란
+2. 로그인한 사용자는 서버 상태가 아니라 클라이언트 상태이다.
