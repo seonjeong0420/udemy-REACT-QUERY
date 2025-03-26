@@ -1,11 +1,11 @@
-import type { Treatment } from "@shared/types";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { axiosInstance } from "@/axiosInstance";
-import { queryKeys } from "@/react-query/constants";
+import type { Treatment } from '@shared/types';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { axiosInstance } from '@/axiosInstance';
+import { queryKeys } from '@/react-query/constants';
 
 // for when we need a query function for useQuery
 async function getTreatments(): Promise<Treatment[]> {
-  const { data } = await axiosInstance.get("/treatments");
+  const { data } = await axiosInstance.get('/treatments');
   return data;
 }
 
@@ -15,6 +15,11 @@ export function useTreatments(): Treatment[] {
   const { data = fallback } = useQuery({
     queryKey: [queryKeys.treatments],
     queryFn: getTreatments,
+    staleTime: 600000, // 10 minutes (10분 동안 데이터 유지)
+    gcTime: 900000, // 15 minutes
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   return data;

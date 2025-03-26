@@ -7,6 +7,10 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## useCallback
+
+함수를 기억하는 훅
+
 ## useIsFetching
 
 현재 가져오는 쿼리가 있는지 check 해주는 훅 (대규모 프로젝트에서 사용)
@@ -29,3 +33,5 @@ Currently, two official plugins are available:
 - 리액트 쿼리는 선택 함수의 삼중 등호 비교를 수행하고, 데이터가 변경되거나 함수가 변경된 경우에만 선택함수룰 실행한다.
 - 데이터가 마지막으로 데이터를 검색했을 떄와 동일하고 선택함수가 동일한 경우 선택 함수를 다시 실행하지 않는다.
 - 익명 함수에서 안정적인 함수를 만들고 싶다면, useCallback 함수(함수를 기억하는 훅)를 사용할 수 있다.
+
+## Refetching
