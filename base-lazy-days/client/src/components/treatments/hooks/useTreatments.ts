@@ -15,11 +15,6 @@ export function useTreatments(): Treatment[] {
   const { data = fallback } = useQuery({
     queryKey: [queryKeys.treatments],
     queryFn: getTreatments,
-    staleTime: 600000, // 10 minutes (10분 동안 데이터 유지)
-    gcTime: 900000, // 15 minutes
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
   });
 
   return data;
@@ -31,7 +26,5 @@ export function usePrefetchTreatments(): void {
     // prefetchQuery : 일회성 작업, 단순히 데이터를 가져와 캐시에 저장한 후에 useQuery처럼 모니터링 수행하지 않는다.
     queryKey: [queryKeys.treatments],
     queryFn: getTreatments,
-    staleTime: 600000, // 10 minutes (10분 동안 데이터 유지)
-    gcTime: 900000, // 15 minutes
   });
 }
